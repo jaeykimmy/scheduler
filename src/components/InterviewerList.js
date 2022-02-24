@@ -6,11 +6,12 @@ export default function InterviewerList(props) {
   const propsInterviewers = props.interviewers
   console.log(propsInterviewers)
   
-  const interviewers = propsInterviewers.map((propsInterviewers) =>
+  const interviewers = props.interviewers.map((propsInterviewers) =>
     <InterviewerListItem {...propsInterviewers}
       setInterviewer={() => props.onChange(propsInterviewers.id)}
       selected={propsInterviewers.id === props.value}
-      key={propsInterviewers.id} />)
+      key={propsInterviewers.id}
+      onChange={()=>props.setStudent(props.name)}/>)
   
   return (
   <section className="interviewers">
