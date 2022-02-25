@@ -8,3 +8,15 @@ export function getAppointmentsForDay(state, day) {
   const result = foundDay.appointments.map((appointmentID) => state.appointments[appointmentID])
   return result
 }
+export function getInterview(state, interview) {
+  const result = {}
+  if (interview === null) return null;
+  console.log(interview)
+  
+  if (interview.interviewer) {
+    console.log(interview.student)
+    result.interviewer = state.interviewers[interview.interviewer];
+    result.student = interview.student;
+    return result;
+  }
+}
