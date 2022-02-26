@@ -3,7 +3,8 @@ import DayList from "./DayList";
 import "components/Application.scss";
 import Appointment from "components/Appointment";
 import axios from "axios";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import useVisualMode from "hooks/useVisualMode";
 
 const appointments1 = [
   {
@@ -54,15 +55,15 @@ export default function Application() {
   
 
   const setDay = (day) => setState({ ...state, day });
-//   const setDays = (days) => {
-//     setState(prev => ({ ...prev, days }));
-// }
+  //   const setDays = (days) => {
+  //     setState(prev => ({ ...prev, days }));
+  // }
   
   
   useEffect(() => {
     // axios.get('/api/days').then(response => {
-      // setDays(response.data)
-      // console.log(response.data)
+    // setDays(response.data)
+    // console.log(response.data)
     
     Promise.all([
       axios.get('/api/days'),
@@ -75,14 +76,18 @@ export default function Application() {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     });
   }, []);
-  
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const appointmentList = dailyAppointments.map((appointment) =>
+  console.log(state.interviewers)
+  const dailyAppointments = getAppointmentsForDay(state, state.day, state.interviewers);
+  const appointmentList = dailyAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+    return (
     <Appointment
       key={appointment.id}
-      {...appointment}
+      id={appointment.id}
+      time={appointment.time}
+      interview={interview}
     />)
-  
+})
   return (
     <main className="layout">
       <section className="sidebar">
