@@ -66,7 +66,12 @@ export default function Application() {
   ...state,
       appointments
     });
-    return axios.put(`/api/appointments/${id}`, {interview})
+    return axios.put(`/api/appointments/${id}`, { interview })
+  }
+  
+  function cancelInterview(id) {
+    console.log("cancel interview:", id)
+    return axios.delete(`/api/appointments/${id}`, {interview: null})
   }
   
 
@@ -107,6 +112,7 @@ export default function Application() {
         interview={interview}
         interviewers={dailyInterviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
     />)
 })
   return (
