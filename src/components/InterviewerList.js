@@ -4,9 +4,6 @@ import "components/InterviewerList.scss"
 import { PropTypes } from "prop-types"
 
 export default function InterviewerList(props) {
-  // const propsInterviewers = props.interviewers
-  // console.log(propsInterviewers)
-  
   const interviewers = props.interviewers.map((propsInterviewers) =>
     <InterviewerListItem {...propsInterviewers}
       setInterviewer={() => props.onChange(propsInterviewers.id)}

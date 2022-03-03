@@ -3,10 +3,6 @@ import DayListItem from "./DayListItem";
 
 export default function DayList(props) {
   const propsDays = props.days
-  // for (let i in propsDays) {
-  //   console.log("spots:", propsDays[i].spots)
-  // }
-   console.log(propsDays)
   const days = propsDays.map((propsDays) =>
     <DayListItem {...propsDays}
       setDay={props.onChange}
