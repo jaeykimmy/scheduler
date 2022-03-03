@@ -25,5 +25,5 @@ npm test
 ```sh
 npm run storybook
 ```
-## Screenshots
+## App Demo
 !["Interview Scheduler Demo"](https://github.com/jaeykimmy/scheduler/blob/master/doc/demo.gif)
